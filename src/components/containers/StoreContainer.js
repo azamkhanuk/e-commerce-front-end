@@ -35,13 +35,11 @@ export default class StoreContainer extends Component {
   }
 
   render() {
+    const { handleSearch, handleShoeClick, filterSearch } = this
     return (
       <div>
-        <SearchBar handleSearch={this.handleSearch} />
-        <ShoeList
-          shoes={this.filterSearch()}
-          handleShoeClick={this.handleShoeClick}
-        />
+        <SearchBar handleSearch={handleSearch} />
+        <ShoeList shoes={filterSearch()} handleShoeClick={handleShoeClick} />
       </div>
     )
   }

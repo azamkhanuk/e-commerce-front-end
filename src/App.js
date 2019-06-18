@@ -10,7 +10,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 
 class App extends Component {
   state = {
-    basket: null,
+    basket: [],
     total: null
   }
 

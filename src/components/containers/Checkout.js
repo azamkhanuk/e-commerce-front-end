@@ -22,13 +22,16 @@ class Checkout extends Component {
   // }
   render() {
     console.log(this.state)
+    const { total, basket } = this.props
+    const { handleChange } = this
+
     return (
       <div className='container'>
-        <h5 className='header'>My Shopping Bag({this.props.basket.length})</h5>
+        <h5 className='header'>My Shopping Bag({basket.length})</h5>
         <div className='divider' />
-        <h6>SubTotal = £{this.props.total}</h6>
+        <h6>SubTotal = £{total}</h6>
         <h6>Shipping = £0.00</h6>
-        <h6>Total = £{this.props.total}</h6>
+        <h6>Total = £{total}</h6>
         <div className='divider' />
         <br />
         <div className='container'>
@@ -40,20 +43,20 @@ class Checkout extends Component {
                     id='first_name'
                     name='first_name'
                     type='text'
-                    class='validate'
-                    onChange={this.handleChange}
+                    className='validate'
+                    onChange={handleChange}
                   />
-                  <label for='first_name'>First Name*</label>
+                  <label htmlFor='first_name'>First Name*</label>
                 </div>
                 <div className='input-field col s6'>
                   <input
                     id='last_name'
                     type='text'
-                    class='validate'
-                    onChange={this.handleChange}
+                    className='validate'
+                    onChange={handleChange}
                     name='last_name'
                   />
-                  <label for='first_name'>Last Name*</label>
+                  <label htmlFor='first_name'>Last Name*</label>
                 </div>
                 <div className='row'>
                   <div className='input-field col s12'>
@@ -61,10 +64,10 @@ class Checkout extends Component {
                       name='email'
                       id='email'
                       type='email'
-                      class='validate'
-                      onChange={this.handleChange}
+                      className='validate'
+                      onChange={handleChange}
                     />
-                    <label for='email'>Email*</label>
+                    <label htmlFor='email'>Email*</label>
                   </div>
                 </div>
                 <div className='row'>
@@ -73,10 +76,10 @@ class Checkout extends Component {
                       name='address_line_1'
                       id='address_line_1'
                       type='text'
-                      class='validate'
-                      onChange={this.handleChange}
+                      className='validate'
+                      onChange={handleChange}
                     />
-                    <label for='address1'>Address Line 1*</label>
+                    <label htmlFor='address1'>Address Line 1*</label>
                   </div>
                 </div>
                 <div className='row'>
@@ -85,52 +88,52 @@ class Checkout extends Component {
                       name='address_line_2'
                       id='address_line_2'
                       type='text'
-                      class='validate'
-                      onChange={this.handleChange}
+                      className='validate'
+                      onChange={handleChange}
                     />
-                    <label for='address2'>Address Line 2</label>
+                    <label htmlFor='address2'>Address Line 2</label>
                   </div>
                   <div className='input-field col s6'>
                     <input
                       name='city'
                       id='city'
                       type='text'
-                      class='validate'
-                      onChange={this.handleChange}
+                      className='validate'
+                      onChange={handleChange}
                     />
-                    <label for='city'>City</label>
+                    <label htmlFor='city'>City</label>
                   </div>
                   <div className='input-field col s6'>
                     <input
                       name='postcode'
                       id='postcode'
                       type='text'
-                      class='validate'
-                      onChange={this.handleChange}
+                      className='validate'
+                      onChange={handleChange}
                     />
-                    <label for='postcode'>Post Code*</label>
+                    <label htmlFor='postcode'>Post Code*</label>
                   </div>
                   <div className='input-field col s6'>
                     <input
                       name='country'
                       id='Country'
                       type='text'
-                      class='validate'
+                      className='validate'
                       placeholder='United Kingdom'
-                      onChange={this.handleChange}
+                      onChange={handleChange}
                     />
-                    <label for='Country'>Country</label>
+                    <label htmlFor='Country'>Country</label>
                   </div>
                   <div className='input-field col s6'>
                     <input
                       name='phone'
                       id='phonenum'
                       type='text'
-                      class='validate'
+                      className='validate'
                       placeholder='+44'
-                      onChange={this.handleChange}
+                      onChange={handleChange}
                     />
-                    <label for='phonenum'>Phone Number*</label>
+                    <label htmlFor='phonenum'>Phone Number*</label>
                   </div>
                   <div>
                     <Link

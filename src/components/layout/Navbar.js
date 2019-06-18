@@ -7,6 +7,7 @@ class Navbar extends Component {
   }
 
   render() {
+    const { basket } = this.props
     return (
       <nav>
         <div
@@ -25,7 +26,7 @@ class Navbar extends Component {
                     className='fas fa-shopping-basket'
                     style={{ marginRight: '5px' }}
                   />
-                  {this.props.basket ? this.props.basket.length : null}
+                  {basket ? basket.length : null}
                 </Link>
               </div>
             </li>

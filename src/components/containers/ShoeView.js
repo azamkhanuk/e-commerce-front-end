@@ -34,10 +34,11 @@ class ShoeView extends Component {
   }
 
   render() {
+    const { item } = this.state
     return (
       <div className=''>
         <div className='row'>
-          {this.state.item && (
+          {item && (
             <React.Fragment>
               <div
                 className='col lg8 sm12 m8 xl8'
