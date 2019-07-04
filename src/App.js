@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import './App.css'
-import Navbar from './components/layout/Navbar'
-import StoreContainer from './components/containers/StoreContainer'
-import ShoeView from './components/containers/ShoeView'
-import Basket from './components/containers/Basket'
-import Checkout from './components/containers/Checkout'
-import OrderStatus from './components/containers/OrderStatus'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import './App.css';
+import Navbar from './components/layout/Navbar';
+import StoreContainer from './components/containers/StoreContainer';
+import ShoeView from './components/containers/ShoeView';
+import Basket from './components/containers/Basket';
+import Checkout from './components/containers/Checkout';
+import OrderStatus from './components/containers/OrderStatus';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
     basket: [],
     total: null
-  }
+  };
 
   componentDidMount() {
-    this.getBasketData()
+    this.getBasketData();
   }
 
   getBasketData = () => {
@@ -25,25 +25,24 @@ class App extends Component {
           basket: JSON.parse(localStorage.getItem('shoeObject'))
         },
         () => this.getSummary()
-      )
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   getSummary = () => {
-    const reducer = (accumulator, currentValue) => accumulator + currentValue
-
-    this.setState({
-      total: this.state.basket
-        .map(shoe => parseInt(shoe.item.cost))
-        .reduce(reducer)
-    })
-  }
+    // const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    // this.setState({
+    //   total: this.state.basket
+    //     .map(shoe => parseInt(shoe.item.cost))
+    //     .reduce(reducer)
+    // });
+  };
 
   render() {
-    const { basket } = this.state
-    const { getBasketData } = this
+    const { basket } = this.state;
+    const { getBasketData } = this;
 
     return (
       <React.Fragment>
@@ -87,8 +86,8 @@ class App extends Component {
           )}
         </Switch>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default withRouter(App)
+export default withRouter(App);

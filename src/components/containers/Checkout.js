@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 class Checkout extends Component {
   state = {
-    // shipping: 9.99,
+    shipping: 9.99
   }
 
   componentDidMount() {
@@ -15,13 +15,17 @@ class Checkout extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  // calculateTotal = () => {
-  //   return Math.round(
-  //     parseFloat(this.state.shipping) + parseFloat(this.state.total)
-  //   )
-  // }
+  calculateTotal = () => {
+    return Math.round(
+      parseFloat(this.state.shipping) + parseFloat(this.props.total)
+    )
+  }
   render() {
     console.log(this.state)
+    console.log(this.props.total)
+    console.log(this.state.shipping)
+
+    console.log(this.calculateTotal())
     const { total, basket } = this.props
     const { handleChange } = this
 
@@ -30,7 +34,7 @@ class Checkout extends Component {
         <h5 className='header'>My Shopping Bag({basket.length})</h5>
         <div className='divider' />
         <h6>SubTotal = £{total}</h6>
-        <h6>Shipping = £0.00</h6>
+        <h6>Shipping = £{this.calculateTotal()}</h6>
         <h6>Total = £{total}</h6>
         <div className='divider' />
         <br />

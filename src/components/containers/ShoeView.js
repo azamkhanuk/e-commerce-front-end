@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css'
-import axios from 'axios'
+import React, { Component } from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css';
+import axios from 'axios';
 
 class ShoeView extends Component {
   state = {
     item: null
-  }
+  };
 
-  componentDidMount() {
-    const elems = document.querySelectorAll('.materialboxed')
-    M.Materialbox.init(elems)
-    axios
-      .get(`http://localhost:3000/items/${this.props.match.params.id}`)
-      .then(res => this.setState({ item: res.data }))
-      .catch(err => console.log(err))
-  }
+  // componentDidMount() {
+  //   const elems = document.querySelectorAll('.materialboxed');
+  //   M.Materialbox.init(elems);
+  //   axios
+  //     .get(`http://localhost:5000/api/trainers/_${this.props.match.params.id}`)
+  //     .then(res => this.setState({ item: res.data }))
+  //     .catch(err => console.log(err));
+  // }
 
   addToBasket = () => {
     localStorage.getItem('shoeObject')
@@ -29,12 +29,12 @@ class ShoeView extends Component {
       : localStorage.setItem(
           'shoeObject',
           `[${JSON.stringify(this.state.item)}]`
-        )
-    this.props.getBasketData()
-  }
+        );
+    this.props.getBasketData();
+  };
 
   render() {
-    const { item } = this.state
+    const { item } = this.state;
     return (
       <div className=''>
         <div className='row'>
@@ -76,8 +76,8 @@ class ShoeView extends Component {
           )}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default ShoeView
+export default ShoeView;
