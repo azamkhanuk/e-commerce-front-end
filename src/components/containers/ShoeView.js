@@ -8,14 +8,14 @@ class ShoeView extends Component {
     item: null
   };
 
-  // componentDidMount() {
-  //   const elems = document.querySelectorAll('.materialboxed');
-  //   M.Materialbox.init(elems);
-  //   axios
-  //     .get(`http://localhost:5000/api/trainers/_${this.props.match.params.id}`)
-  //     .then(res => this.setState({ item: res.data }))
-  //     .catch(err => console.log(err));
-  // }
+  componentDidMount() {
+    const elems = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(elems);
+    axios
+      .get(`http://localhost:5000/api/trainers/${this.props.match.params._id}`)
+      .then(res => this.setState({ item: res.data }))
+      .catch(err => console.log(err));
+  }
 
   addToBasket = () => {
     localStorage.getItem('shoeObject')

@@ -1,5 +1,5 @@
-import React from 'react'
-import ShowItem from './ShoeItem'
+import React from 'react';
+import ShowItem from './ShoeItem';
 
 const ShoeList = props => {
   return (
@@ -8,15 +8,15 @@ const ShoeList = props => {
         {props.shoes.map(shoe => {
           return (
             <ShowItem
-              key={shoe.id}
+              key={shoe._id}
               shoe={shoe}
               handleShoeClick={() => props.handleShoeClick(shoe.id)}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShoeList
+export default ShoeList;

@@ -38,6 +38,7 @@ class App extends Component {
     //     .map(shoe => parseInt(shoe.item.cost))
     //     .reduce(reducer)
     // });
+    console.log(this.state.basket);
   };
 
   render() {
