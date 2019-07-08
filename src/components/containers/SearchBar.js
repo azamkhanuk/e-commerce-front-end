@@ -1,21 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Menu, Input } from 'semantic-ui-react';
+// import { Search, Menu, Container, Segment, Input } from 'semantic-ui-react';
 
 export default class SearchBar extends Component {
   render() {
-    const { handleSearch } = this.props
+    // const { handleSearch } = this.props;
     return (
-      <nav>
-        <div className='nav-wrapper'>
-          <form>
-            <div className='input-field'>
-              <input id='search' type='search' onChange={handleSearch} />
-              <label className='label-icon'>
-                <i className='fas fa-search' />
-              </label>
-            </div>
-          </form>
-        </div>
-      </nav>
-    )
+      <Menu alight='center' inverted>
+        <Menu.Item>
+          <Input className='icon' icon='search' placeholder='Search...' />
+        </Menu.Item>
+      </Menu>
+    );
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import StoreContainer from './components/containers/StoreContainer';
 import ShoeView from './components/containers/ShoeView';
 import Basket from './components/containers/Basket';
@@ -86,6 +87,7 @@ class App extends Component {
             <Route path='/order-status' component={OrderStatus} exact />
           )}
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }
