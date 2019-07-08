@@ -51,7 +51,7 @@ class App extends Component {
         <Switch>
           <Route path='/' component={StoreContainer} exact />
           <Route
-            path='/shoes/:id'
+            path='/shoes/_id'
             render={props => (
               <ShoeView {...props} getBasketData={this.getBasketData} />
             )}

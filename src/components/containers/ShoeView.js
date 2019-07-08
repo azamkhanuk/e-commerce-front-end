@@ -9,6 +9,7 @@ class ShoeView extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     const elems = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(elems);
     axios
