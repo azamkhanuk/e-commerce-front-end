@@ -73,7 +73,7 @@ class App extends Component {
             render={props => {
               const id = props.match.params.id;
               const shoes = this.state.shoes;
-              const shoe = shoes.find(shoe => shoe._id == id);
+              const shoe = shoes.find(shoe => shoe._id === id);
               if (shoes.length === 0) return <h1>Loading</h1>;
               if (shoes.length > 0 && shoe === undefined)
                 return <h1>Page not found</h1>;

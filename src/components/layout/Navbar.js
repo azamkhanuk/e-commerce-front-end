@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  // Divider,
-  // Dropdown,
-  // Grid,
-  // Header,
-  // Image,
-  // List,
-  Menu
-  // Segment
-} from 'semantic-ui-react';
+import { Container, Menu } from 'semantic-ui-react';
 
-class Navbar extends Component {
+export default class Navbar extends Component {
   componentDidMount() {
     this.props.getBasketData();
   }
@@ -21,39 +11,41 @@ class Navbar extends Component {
     const { basket } = this.props;
     return (
       <div>
-        <Menu fixed='top' inverted>
+        <Menu>
           <Container>
-            <Link to='./'>
-              <Menu.Item as='' header>
-                <div>
-                  <i className='fas fa-star-of-life' />
-                </div>
-                BEEM STORE
-              </Menu.Item>
-            </Link>
+            <Menu.Item as={Link} name='home' to='/'>
+              <div>
+                <i
+                  className='fas fa-chess-king'
+                  style={{ marginRight: '7px' }}
+                />
+              </div>
+              FAISANDÉ
+            </Menu.Item>
 
             <div className='right menu'>
-              <Link to='/basket'>
-                <Menu.Item>
-                  <i
-                    className='fas fa-shopping-basket'
-                    style={{ marginRight: '5px' }}
-                  />
-                  {basket ? basket.length : null}
-                </Menu.Item>
-              </Link>
+              <Menu.Item as={Link} name='basket' to='/basket'>
+                <div className='ui vertical animated button' tabIndex='0'>
+                  <div className='hidden content'>Shop</div>
+                  <div className='visible content'>
+                    <i
+                      className='fas fa-shopping-basket'
+                      style={{ marginRight: '5px' }}
+                    />
+                    {basket ? basket.length : null}
+                  </div>
+                </div>
+              </Menu.Item>
+              <Menu.Item as='a'>
+                <i className='fas fa-hand-holding-heart' />
+              </Menu.Item>
+              <Menu.Item as='a'>
+                <i className='fas fa-sign-out-alt' />
+              </Menu.Item>
             </div>
-            <Menu.Item as='a'>
-              <i className='fas fa-hand-holding-heart' />
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <i className='fas fa-sign-out-alt' />
-            </Menu.Item>
           </Container>
         </Menu>
       </div>
     );
   }
 }
-
-export default Navbar;

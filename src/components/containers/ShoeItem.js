@@ -1,27 +1,44 @@
 import React from 'react';
 import '../../App.css';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const ShoeItem = props => {
+  const handleClick = () => props.history.push(`/shoe/${shoe._id}`);
+
   const { shoe, handleShoeClick } = props;
   return (
-    <Link to={`/shoe/${shoe._id}`}>
-      <div className='col custom-col grid-example s12 m7'>
-        <div className='card'>
-          <div className='card-image' onClick={handleShoeClick}>
-            <img src={shoe.images[0]} alt={shoe.name} />
-          </div>
+    <div className='column'>
+      <div onClick={() => handleClick()} className='ui fluid card'>
+        {/* <Link to={`/shoe/${shoe._id}`}> */}
+        <div className='ui slide masked reveal image' onClick={handleShoeClick}>
+          <img
+            src={shoe.images[0]}
+            alt={shoe.name}
+            className='visible content'
+          />
+          <img
+            src={shoe.images[1]}
+            alt={shoe.name}
+            className='hidden content'
+          />
+        </div>
+        {/* </Link> */}
+        <div className='content'>
           <div
-            className='card-content'
-            style={{ padding: '0', paddingBottom: '24px', textAlign: 'center' }}
+            className='description'
+            style={{
+              padding: '0',
+              paddingBottom: '24px',
+              textAlign: 'center'
+            }}
           >
             <p>{shoe.name}</p>
             <p>£{shoe.cost}.00</p>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
-export default ShoeItem;
+export default withRouter(ShoeItem);
