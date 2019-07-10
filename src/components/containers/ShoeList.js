@@ -12,7 +12,7 @@ const ShoeList = props => {
             <ShowItem
               key={shoe._id}
               shoe={shoe}
-              handleShoeClick={() => props.handleShoeClick(shoe._id)}
+              handleShoeClick={() => props.handleShoeClick(shoe.id)}
             />
           );
         })}

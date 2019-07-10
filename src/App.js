@@ -2,60 +2,89 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import StoreContainer from './components/containers/StoreContainer';
 import ShoeView from './components/containers/ShoeView';
 import Basket from './components/containers/Basket';
 import Checkout from './components/containers/Checkout';
 import OrderStatus from './components/containers/OrderStatus';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import axios from 'axios';
+
+import Home from './components/containers/Home';
 
 class App extends Component {
   state = {
+    shoes: [],
     basket: [],
+    search: '',
+    selectedShoe: {},
     total: null
   };
 
   componentDidMount() {
-    this.getBasketData();
+    axios
+      .get('http://localhost:5000/api/trainers')
+      .then(data => this.setState({ shoes: data.data }));
   }
 
+  handleShoeClick = id => {
+    let selectedShoe = this.state.shoes.find(shoe => shoe._id === id);
+    this.setState({ selectedShoe: selectedShoe });
+  };
+
   getBasketData = () => {
-    try {
-      this.setState(
-        {
-          basket: JSON.parse(localStorage.getItem('shoeObject'))
-        },
-        () => this.getSummary()
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    const sliced = JSON.parse(localStorage.getItem('shoeObject'));
+    const object = sliced.slice(1, -1);
+    this.setState(
+      {
+        basket: object
+      },
+      () => this.getSummary()
+    );
   };
 
   getSummary = () => {
-    // const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    // this.setState({
-    //   total: this.state.basket
-    //     .map(shoe => parseInt(shoe.item.cost))
-    //     .reduce(reducer)
-    // });
-    console.log(this.state.basket);
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    this.setState({
+      total: this.state.basket.map(shoe => parseInt(shoe.cost)).reduce(reducer)
+    });
   };
 
   render() {
-    const { basket } = this.state;
-    const { getBasketData } = this;
+    const { basket, shoes } = this.state;
+    const { getBasketData, handleShoeClick } = this;
 
     return (
       <React.Fragment>
         <Navbar getBasketData={getBasketData} basket={basket ? basket : null} />
         <Switch>
-          <Route path='/' component={StoreContainer} exact />
           <Route
-            path='/shoes/_id'
-            render={props => (
-              <ShoeView {...props} getBasketData={this.getBasketData} />
+            exact
+            path='/'
+            component={props => (
+              <Home
+                {...props}
+                shoes={shoes}
+                handleShoeClick={handleShoeClick}
+              />
             )}
+          />
+          <Route
+            path='/shoe/:id'
+            render={props => {
+              const id = props.match.params.id;
+              const shoes = this.state.shoes;
+              const shoe = shoes.find(shoe => shoe._id == id);
+              if (shoes.length === 0) return <h1>Loading</h1>;
+              if (shoes.length > 0 && shoe === undefined)
+                return <h1>Page not found</h1>;
+              return (
+                <ShoeView
+                  {...props}
+                  shoe={shoe}
+                  getBasketData={this.getBasketData}
+                />
+              );
+            }}
             exact
           />
           <Route

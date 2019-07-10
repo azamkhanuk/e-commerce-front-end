@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ShoeItem = props => {
   const { shoe, handleShoeClick } = props;
   return (
-    <Link to={`/shoes/${shoe.id}`}>
+    <Link to={`/shoe/${shoe._id}`}>
       <div className='col custom-col grid-example s12 m7'>
         <div className='card'>
           <div className='card-image' onClick={handleShoeClick}>

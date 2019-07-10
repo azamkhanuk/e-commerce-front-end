@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
-import axios from 'axios';
+import ImageViewer from './ImageView';
 
 class ShoeView extends Component {
   state = {
@@ -9,13 +9,8 @@ class ShoeView extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const elems = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(elems);
-    axios
-      .get(`http://localhost:5000/api/trainers/${this.props.match.params._id}`)
-      .then(res => this.setState({ item: res.data }))
-      .catch(err => console.log(err));
   }
 
   addToBasket = () => {
@@ -24,42 +19,39 @@ class ShoeView extends Component {
           'shoeObject',
           JSON.stringify([
             ...JSON.parse(localStorage.getItem('shoeObject')),
-            this.state.item
+            this.props.shoe
           ])
         )
       : localStorage.setItem(
           'shoeObject',
-          `[${JSON.stringify(this.state.item)}]`
+          `[${JSON.stringify(this.props.shoe)}]`
         );
     this.props.getBasketData();
   };
 
   render() {
+    console.log(this.props.shoe);
     const { item } = this.state;
     return (
       <div className=''>
         <div className='row'>
-          {item && (
+          {this.props.shoe && (
             <React.Fragment>
               <div
                 className='col lg8 sm12 m8 xl8'
                 style={{ paddingLeft: '175px' }}
               >
-                <h3>{this.state.item.item.name}</h3>
-                <img
-                  className='materialboxed responsive-image'
-                  alt={this.state.item.item.name}
-                  src={this.state.item.colors[0].image}
-                />
+                <h3>{this.props.shoe.name}</h3>
+                <ImageViewer images={this.props.shoe.images} />
               </div>
               <div
                 className='col lg4 sm12 m4 xl4'
                 style={{ minHeight: '1000px' }}
               >
-                <h3 className='header'>£{this.state.item.item.cost}</h3>
-                <h6>Type: {this.state.item.item.gender.toUpperCase()}</h6>
+                <h3 className='header'>£{this.props.shoe.cost}</h3>
+                <h6>Type: {this.props.shoe.gender.toUpperCase()}</h6>
                 <br />
-                <p>{this.state.item.item.description}</p>
+                <p>{this.props.shoe.description}</p>
                 <br />
 
                 <button

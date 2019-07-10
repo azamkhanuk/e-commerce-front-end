@@ -1,41 +1,39 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Checkout extends Component {
   state = {
     shipping: 9.99
-  }
+  };
 
   componentDidMount() {
-    console.log(this.props.total)
-    console.log(this.props.basket)
+    console.log(this.props.total);
+    console.log(this.props.basket);
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
-  calculateTotal = () => {
-    return Math.round(
-      parseFloat(this.state.shipping) + parseFloat(this.props.total)
-    )
-  }
+  calculateTotal = () =>
+    parseFloat(this.state.shipping) + parseFloat(this.props.total);
+
   render() {
-    console.log(this.state)
-    console.log(this.props.total)
-    console.log(this.state.shipping)
+    console.log(this.state);
+    console.log(this.props.total);
+    console.log(this.state.shipping);
 
-    console.log(this.calculateTotal())
-    const { total, basket } = this.props
-    const { handleChange } = this
+    console.log(this.calculateTotal());
+    const { total, basket } = this.props;
+    const { handleChange } = this;
 
     return (
       <div className='container'>
         <h5 className='header'>My Shopping Bag({basket.length})</h5>
         <div className='divider' />
         <h6>SubTotal = £{total}</h6>
-        <h6>Shipping = £{this.calculateTotal()}</h6>
-        <h6>Total = £{total}</h6>
+        <h6>Shipping = £{this.state.shipping}</h6>
+        <h6>Total = £{this.calculateTotal()}</h6>
         <div className='divider' />
         <br />
         <div className='container'>
@@ -162,8 +160,8 @@ class Checkout extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Checkout
+export default Checkout;
