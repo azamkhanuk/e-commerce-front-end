@@ -1,24 +1,14 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import {
   Container,
   Divider,
   Grid,
   Header,
   List,
-  Segment
+  Segment,
+  Flag
 } from 'semantic-ui-react';
-// import {
-//   Container,
-//   Divider,
-//   Dropdown,
-//   Grid,
-//   Header,
-//   Image,
-//   List,
-//   Menu,
-//   Segment
-// } from 'semantic-ui-react';
+
 const Footer = () => (
   <div>
     <Segment
@@ -29,21 +19,22 @@ const Footer = () => (
       <Container textAlign='center'>
         <Grid divided inverted stackable>
           <Grid.Column width={3}>
-            <Header inverted as='h4' content='Group 1' />
+            <Header inverted as='h4' content='Links' />
             <List link inverted>
-              <List.Item as='a'>Link One</List.Item>
-              <List.Item as='a'>Link Two</List.Item>
-              <List.Item as='a'>Link Three</List.Item>
-              <List.Item as='a'>Link Four</List.Item>
+              <List.Item as='a'>About Us</List.Item>
+              <List.Item as='a'>History</List.Item>
+              <List.Item as='a'>Help</List.Item>
+              <List.Item as='a'>Newsletter</List.Item>
+              <List.Item as='a'>
+                <Flag name='uk' />
+                United Kingdom
+              </List.Item>
             </List>
           </Grid.Column>
 
           <Grid.Column width={12}>
-            <Header inverted as='h4' content='Footer Header' />
-            <p>
-              Extra space for a call to action inside the footer that could help
-              re-engage users.
-            </p>
+            <Header inverted as='h4' content='FAISANDÉ' />
+            <p>Buy the most exclusive trainers on the planet today!</p>
           </Grid.Column>
         </Grid>
 

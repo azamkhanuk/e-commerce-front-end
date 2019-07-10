@@ -22,7 +22,10 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <SearchBar handleSearch={this.handleSearch} />
+        <SearchBar
+          collection={this.props.shoes}
+          handleSearch={this.handleSearch}
+        />
         <ShoeList
           shoes={this.filterSearch()}
           handleShoeClick={this.props.handleShoeClick}

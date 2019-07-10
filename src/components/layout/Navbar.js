@@ -1,11 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Menu } from 'semantic-ui-react';
+import { Container, Menu, Dropdown, Icon } from 'semantic-ui-react';
 
 export default class Navbar extends Component {
   componentDidMount() {
     this.props.getBasketData();
   }
+  trigger = (
+    <span>
+      <Icon name='user' /> Hello, Fernando
+    </span>
+  );
+
+  options = [
+    {
+      key: 'user',
+      text: (
+        <span>
+          Signed in as <strong>Fernando Lopez</strong>
+        </span>
+      ),
+      disabled: true
+    },
+    { key: 'profile', text: 'Your Profile' },
+    { key: 'favourites', text: 'Your Favourites' },
+    { key: 'checkout', text: 'Checkout' },
+    { key: 'faq', text: 'F.A.Q' },
+    { key: 'sign-out', text: 'Sign Out' }
+  ];
 
   render() {
     const { basket } = this.props;
@@ -24,6 +46,9 @@ export default class Navbar extends Component {
             </Menu.Item>
 
             <div className='right menu'>
+              <Menu.Item>
+                <Dropdown trigger={this.trigger} options={this.options} />
+              </Menu.Item>
               <Menu.Item as={Link} name='basket' to='/basket'>
                 <div className='ui vertical animated button' tabIndex='0'>
                   <div className='hidden content'>Shop</div>
