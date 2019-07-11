@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Divider, Container, Header, Segment } from 'semantic-ui-react';
 
 export class OrderStatus extends Component {
   render() {
-    console.log(this.props)
+    console.log(this.props);
     const {
       first_name,
       last_name,
@@ -13,30 +14,31 @@ export class OrderStatus extends Component {
       postcode,
       email,
       phone
-    } = this.props.location.state
+    } = this.props.location.state;
     return (
-      <div className='container'>
-        <h2>Order Status:</h2>
-        <h5>
-          <strong>Your payment has gone through</strong>
-        </h5>
-
-        <h5>Your Details:</h5>
-        <h6>
-          Name: {first_name} {last_name}
-        </h6>
-        <h6>
-          Address: {address_line_1}, {address_line_2}, {city}, {country},
-          {postcode}
-        </h6>
-        <h6>
+      <Container>
+        <Divider />
+        <Header as='h1'>Order Status:</Header>
+        <Segment raised>Your payment has gone through!</Segment>
+        <Divider />
+        <Header as='h2'>Your Details:</Header>
+        <Segment.Group>
+          <Segment>
+            Name: {first_name} {last_name}
+          </Segment>
+          <Segment>Address Line 1: {address_line_1}</Segment>
+          <Segment>Address Line 2: {address_line_2}</Segment>
+          <Segment>City: {city}</Segment>
+          <Segment>Country: {country}</Segment>
+        </Segment.Group>
+        <Segment>
           We will contact you through <strong>{email}</strong> and you will
           recieve a text promptly on <strong>{phone}</strong>.
-        </h6>
-        <h6>Thanks for ordering!</h6>
-      </div>
-    )
+        </Segment>
+        <Segment inverted>Thanks for ordering!</Segment>
+      </Container>
+    );
   }
 }
 
-export default OrderStatus
+export default OrderStatus;

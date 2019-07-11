@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 
 class Checkout extends Component {
   state = {
@@ -29,9 +30,11 @@ class Checkout extends Component {
 
     return (
       <div className='container'>
-        <h5 className='header'>My Shopping Bag({basket.length})</h5>
+        <h5 className='header' style={{ marginTop: '50px' }}>
+          My Shopping Bag({basket.length})
+        </h5>
         <div className='divider' />
-        <h6>SubTotal = £{total}</h6>
+        <h6>Subtotal = £{total}</h6>
         <h6>Shipping = £{this.state.shipping}</h6>
         <h6>Total = £{this.calculateTotal()}</h6>
         <div className='divider' />
@@ -145,13 +148,14 @@ class Checkout extends Component {
                       }}
                     >
                       {/* <Link {{state : {this.state}, to='/order-status'}}> */}
-                      <button className='waves-light btn-large'>
+
+                      <Button secondary>
                         <i
                           className='far fa-check-circle'
                           style={{ marginRight: '5px' }}
                         />
-                        Complete Order
-                      </button>
+                        Checkout
+                      </Button>
                     </Link>
                   </div>
                 </div>
